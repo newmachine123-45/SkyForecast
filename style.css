@@ -1,0 +1,89 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins',sans-serif;
+    box-sizing: border-box;
+}
+body{
+    background-color: #222;
+}
+.card{
+    width: 90%;
+    max-width: 470px;
+    background: linear-gradient(135deg,#95a19e,#05040a);
+    color: #fff;
+    margin:100px auto 0; 
+    /* here there are three values given to top left and right and to bottom
+     100px from the top and auto for left and right that is the element will come at center from left and right and 0 from bottom*/
+    border-radius: 20px;
+    padding: 40px 35px;
+    text-align: center;
+}
+.search{
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+.search input{
+    border: 0;
+    outline: 0;
+    padding: 10px 15px;
+    font-size: 18px;
+    border-radius:30px;
+    margin-right: 10px;
+    padding: 10px 25px;
+    height: 60px;
+    background: #ebfffc;
+}
+.search button{
+    border: 0;
+    outline: 0;
+    background: #ebfffc;
+    border-radius: 50%;
+    margin-right: 60px;
+    cursor: pointer;
+    height: 60px;
+    width: 60px;
+}
+.temp h1{
+    font-size: 60px;
+}
+.temp h2{
+    font-size: 40px;
+}
+.col{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    align-items: center;
+}
+.humidity img{
+    height: 60px;
+    margin: 1px;
+}
+.windspeed img{
+    height: 60px;
+    margin: 1px;
+}
+.humidity{
+    display: flex;
+    align-items: center;
+  
+}
+.windspeed{
+    display: flex;
+    align-items: center;
+}
+.humid,.wind{
+    font-size: 28px;
+    margin-top: -20px;
+}
+#mausam{
+    display: none;
+}
+.error{
+    text-align: left;
+    margin-left: 10px;
+    display: none
+}

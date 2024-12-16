@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="card">
+
+        <div class="search">
+            <input type="text" class="input" placeholder="enter city name">
+            <button class="btn"><img src="search.png" alt=""></button>
+        </div>
+        <div class="error">
+            <p>invalid city name</p>
+        </div>
+        <div class="temp" id="mausam">
+            <img id="weather" src="clear.png" class="temp" alt="">
+            <h1 id="temp">22°c</h1>
+            <h2 class="city">New York</h2>
+            <p class="infoline"></p>
+            <div class="col" id="mausam2">
+                <div class="humidity">
+                    <img src="humidity.png" alt="">
+                    <div class="p">
+                        <p class="humid">53%</p>
+                        <p>humidity</p>
+                    </div>
+                </div>
+                <div class="windspeed">
+                    <img src="wind.png" alt="">
+                   <div class="p">
+                    <p class="wind">5.66 km/h</p>
+                    <p>Wind Speed</p>
+                   </div>
+                </div>
+            </div>
+        </div>
+      
+          
+    </div>
+    <script>
+        let searchbox=document.querySelector('.input');
+        let btn=document.querySelector('.btn');
+        let p=document.querySelector('.infoline');
+        
+        let apikey="49318497f56a77a3bb5eb29092b3d24d";
+        let apiurl="https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+        async function info(city) {
+            let response=await fetch(apiurl + city +`&appid=${apikey}`);
+            if(response.status==404){
+                document.querySelector('.error').style.display='block';
+                document.querySelector('#mausam').style.display="none";
+            }
+
+            let data=await response.json();
+            // console.log(data);
+            document.querySelector('.city').innerHTML=data.name;
+            document.querySelector('h1').innerHTML=Math.round(data.main.temp)+'°c';
+            document.querySelector('.wind').innerHTML=data.wind.speed+'km/h';
+            document.querySelector('.humid').innerHTML=data.main.humidity+'%';
+            if(data.weather[0].main=='Clouds'){
+               let weathericon=document.querySelector('#weather');
+               weathericon.src="clouds.png"
+               p.innerHTML='its cloudy today';
+            }
+            if(data.weather[0].main=='Clear'){
+               let weathericon=document.querySelector('#weather');
+               weathericon.src="clear.png";
+               p.innerHTML='its clear today';
+            }
+            if(data.weather[0].main=='Rain'){
+               let weathericon=document.querySelector('#weather');
+               weathericon.src="rain.png";
+               p,innerHTML='its rainy today';
+            }
+            if(data.weather[0].main=='Drizzle'){
+               let weathericon=document.querySelector('#weather');
+               weathericon.src="drizzle.png";
+               p.innerHTML='its drizzle today';
+            }
+            if(data.weather[0].main=='Mist'){
+               let weathericon=document.querySelector('#weather');
+               weathericon.src="mist.png";
+               p.innerHTML='its mist today';
+            }
+            document.querySelector('.error').style.display='none';
+            document.querySelector('#mausam').style.display="block";
+        }
+        btn.addEventListener('click',()=>{
+            info(searchbox.value)
+        })
+    //    if u do not write the info in a arrow function then  The info(searchbox.value) is immediately executed when this line of code runs, not when the button is clicked. This means that info will be called as soon as the code is executed, even before any button clicks.
+       
+       
+    </script>
+
+</body>
+
+</html>
